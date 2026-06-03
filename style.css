@@ -88,7 +88,8 @@ body {
   height: 8px;
   background: #2a2a4a;
   border-radius: 4px;
-  overflow: hidden;
+  cursor: pointer;
+  position: relative;
 }
 
 .progress-fill {
@@ -97,13 +98,42 @@ body {
   background: #4ecca3;
   border-radius: 4px;
   transition: width 1s linear, background 0.5s;
+  position: relative;
 }
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background: #4ecca3;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.progress-bar:hover .progress-fill::after,
+.progress-bar.dragging .progress-fill::after {
+  opacity: 1;
+}
+
 
 .progress-fill.warning {
   background: #f0a500;
 }
 
+.progress-fill.warning::after {
+  background: #f0a500;
+}
+
 .progress-fill.danger {
+  background: #e84545;
+}
+
+.progress-fill.danger::after {
   background: #e84545;
 }
 

@@ -151,3 +151,46 @@ if (saved) messageEl.textContent = saved;
 totalLabel.textContent = formatProgressLabel(totalSeconds);
 updateDisplay();
 presetBtns[0].classList.add('active');
+
+// --- Progress bar drag ---
+const progressBar = document.querySelector('.progress-bar');
+let dragging = false;
+
+function pointerX(e) {
+  return e.touches ? e.touches[0].clientX : e.clientX;
+}
+
+function setProgressFromClientX(clientX) {
+  const rect = progressBar.getBoundingClientRect();
+  const ratio = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+  remaining = Math.round(ratio * totalSeconds);
+  if (remaining < 1) remaining = 1;
+  updateDisplay();
+}
+
+function onDragStart(e) {
+  dragging = true;
+  progressBar.classList.add('dragging');
+  progressFill.style.transition = 'none';
+  setProgressFromClientX(pointerX(e));
+  e.preventDefault();
+}
+
+function onDragMove(e) {
+  if (!dragging) return;
+  setProgressFromClientX(pointerX(e));
+}
+
+function onDragEnd() {
+  if (!dragging) return;
+  dragging = false;
+  progressBar.classList.remove('dragging');
+  progressFill.style.transition = '';
+}
+
+progressBar.addEventListener('mousedown', onDragStart);
+progressBar.addEventListener('touchstart', onDragStart, { passive: false });
+document.addEventListener('mousemove', onDragMove);
+document.addEventListener('touchmove', onDragMove, { passive: false });
+document.addEventListener('mouseup', onDragEnd);
+document.addEventListener('touchend', onDragEnd);
