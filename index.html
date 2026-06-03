@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>占座计时器</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="message" id="message" contenteditable="true">马上回来 🚻</h1>
+
+    <div class="timer" id="timer">05:00</div>
+
+    <div class="progress-section">
+      <div class="total-label">总时长 <span id="totalLabel">5:00</span></div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <div class="presets">
+      <button class="preset-btn" data-minutes="5">5 分钟</button>
+      <button class="preset-btn" data-minutes="10">10 分钟</button>
+      <button class="preset-btn" data-minutes="15">15 分钟</button>
+      <button class="preset-btn" data-minutes="20">20 分钟</button>
+    </div>
+
+    <div class="custom-time">
+      <input type="number" id="customMinutes" placeholder="分钟" min="0" max="120" value="5">
+      <span>:</span>
+      <input type="number" id="customSeconds" placeholder="秒" min="0" max="59" value="0">
+      <button id="setCustom">设置</button>
+    </div>
+
+    <div class="controls">
+      <button class="control-btn start" id="startBtn">开始</button>
+      <button class="control-btn pause" id="pauseBtn" disabled>暂停</button>
+      <button class="control-btn reset" id="resetBtn">重置</button>
+      <button class="control-btn fullscreen" id="fullscreenBtn">全屏</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

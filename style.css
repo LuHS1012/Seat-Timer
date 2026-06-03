@@ -1,0 +1,294 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: #1a1a2e;
+  color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  user-select: none;
+}
+
+.container {
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+  padding: 40px 20px;
+}
+
+.message {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #a0d9f7;
+  min-height: 1.2em;
+  outline: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  transition: background 0.2s;
+}
+
+.message:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.message:focus {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.timer {
+  font-size: 12rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 8px;
+  line-height: 1;
+  margin-bottom: 40px;
+  transition: color 0.5s;
+  color: #4ecca3;
+}
+
+.timer.warning {
+  color: #f0a500;
+}
+
+.timer.danger {
+  color: #e84545;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.progress-section {
+  max-width: 500px;
+  margin: 0 auto 32px;
+}
+
+.total-label {
+  font-size: 1rem;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.total-label span {
+  color: #ccc;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.progress-bar {
+  height: 8px;
+  background: #2a2a4a;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 100%;
+  background: #4ecca3;
+  border-radius: 4px;
+  transition: width 1s linear, background 0.5s;
+}
+
+.progress-fill.warning {
+  background: #f0a500;
+}
+
+.progress-fill.danger {
+  background: #e84545;
+}
+
+.presets {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.preset-btn {
+  font-size: 1.1rem;
+  padding: 12px 28px;
+  border: 2px solid #4ecca3;
+  background: transparent;
+  color: #4ecca3;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.preset-btn:hover {
+  background: #4ecca3;
+  color: #1a1a2e;
+}
+
+.preset-btn.active {
+  background: #4ecca3;
+  color: #1a1a2e;
+}
+
+.custom-time {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 32px;
+  font-size: 1.1rem;
+}
+
+.custom-time input {
+  width: 70px;
+  padding: 10px;
+  font-size: 1.1rem;
+  text-align: center;
+  border: 2px solid #555;
+  border-radius: 8px;
+  background: #16213e;
+  color: #eee;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.custom-time input:focus {
+  border-color: #4ecca3;
+}
+
+.custom-time span {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.custom-time button {
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: 2px solid #555;
+  background: transparent;
+  color: #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.custom-time button:hover {
+  border-color: #4ecca3;
+  color: #4ecca3;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.control-btn {
+  font-size: 1.1rem;
+  padding: 14px 36px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-weight: 600;
+}
+
+.control-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.control-btn.start {
+  background: #4ecca3;
+  color: #1a1a2e;
+}
+
+.control-btn.start:hover:not(:disabled) {
+  background: #3db88f;
+}
+
+.control-btn.pause {
+  background: #f0a500;
+  color: #1a1a2e;
+}
+
+.control-btn.pause:hover:not(:disabled) {
+  background: #d49300;
+}
+
+.control-btn.reset {
+  background: #555;
+  color: #eee;
+}
+
+.control-btn.reset:hover:not(:disabled) {
+  background: #666;
+}
+
+.control-btn.fullscreen {
+  background: transparent;
+  border: 2px solid #555;
+  color: #ccc;
+}
+
+.control-btn.fullscreen:hover {
+  border-color: #4ecca3;
+  color: #4ecca3;
+}
+
+/* Fullscreen overrides */
+body.fullscreen .container {
+  max-width: none;
+  padding: 20px;
+}
+
+body.fullscreen .timer {
+  font-size: 20vw;
+  letter-spacing: 0;
+  margin-bottom: 20px;
+}
+
+body.fullscreen .message {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+}
+
+body.fullscreen .progress-section {
+  max-width: 600px;
+  margin-bottom: 24px;
+}
+
+body.fullscreen .total-label {
+  font-size: 1.3rem;
+}
+
+body.fullscreen .progress-bar {
+  height: 12px;
+}
+
+body.fullscreen .presets,
+body.fullscreen .custom-time,
+body.fullscreen .controls {
+  display: none;
+}
+
+/* Hide controls in fullscreen but show on mouse move */
+body.fullscreen .presets,
+body.fullscreen .custom-time,
+body.fullscreen .controls {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+body.fullscreen.show-controls .presets,
+body.fullscreen.show-controls .custom-time,
+body.fullscreen.show-controls .controls {
+  opacity: 1;
+}
